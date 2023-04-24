@@ -3,17 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Tile : MonoBehaviour, IPointerClickHandler
+public class Tile : MonoBehaviour
 {
     public TileData data;
 
-    public void Initialize(GridManager gridM, int rowInit, int columnInit)
+    
+
+
+
+    public void Initialize(GridManager gridM, int rowInit, int columnInit, GameObject candyParent)
     {
-        data = new TileData(gridM, rowInit, columnInit);
+        data = new TileData(gridM, rowInit, columnInit, candyParent);
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+
+    
+
+    
+
+
+    private void OnMouseDown()
     {
-        Debug.Log(gameObject.name);
+        data.gm.SaveClickPosition(transform);
+        Debug.Log( " Row " + data.row + " column " + data.column);
+        Debug.Log("firstClick" + data.gm.firstClick + " secondClick" + data.gm.secondClick);
     }
+
+
+
+
+
+
 }
