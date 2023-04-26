@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class CandyData : ScriptableObject
 {
-    public List<GameObject> candy = new List<GameObject>(); 
+    public List<Candy> candies = new List<Candy>(); 
     
 
 }

@@ -21,6 +21,7 @@ public class SwapCandy : State
   
     }
 
+
     public override void OnUpdate()
     {
         base.OnUpdate();
@@ -39,6 +40,11 @@ public class SwapCandy : State
     public override void OnExit()
     {
         base.OnExit();
+        if (gridManager.isSwapped == true)
+        {
+            //stateManager.ChangeState(Constants.STATE_CHECKCOMBO);
+            //stateManager.currentState = stateManager.listOfStates[Constants.STATE_CHECKCOMBO];
+        }
         
     }
 

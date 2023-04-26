@@ -11,15 +11,13 @@ public class Tile : MonoBehaviour
 
 
 
-    public void Initialize(GridManager gridM, int rowInit, int columnInit, GameObject candyParent)
+    public void Initialize(GridManager gridM, int rowInit, int columnInit, Candy candyParent)
     {
         data = new TileData(gridM, rowInit, columnInit, candyParent);
+
     }
 
 
-    
-
-    
 
 
     private void OnMouseDown()

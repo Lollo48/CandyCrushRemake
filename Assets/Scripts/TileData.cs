@@ -7,11 +7,11 @@ public class TileData
 {
     public int row;
     public int column;
-    public GameObject candyParent;
+    public Candy candyParent;
     public GridManager gm;
     
 
-    public TileData(GridManager gridManager, int newRow, int newColumn, GameObject newCandyParent)
+    public TileData(GridManager gridManager, int newRow, int newColumn, Candy newCandyParent)
     {
         row = newRow;
         column = newColumn;

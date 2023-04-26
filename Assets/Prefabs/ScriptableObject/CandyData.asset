@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 913a7c32efc957d4eabd81eef979930a, type: 3}
   m_Name: CandyData
   m_EditorClassIdentifier: 
-  candy:
-  - {fileID: 5972387031151123043, guid: 8187b9aa73aa8e24f98aa47364d657bc, type: 3}
-  - {fileID: 8852277873077148509, guid: ab5ec84e24491e14ab6a3e37653b600f, type: 3}
-  - {fileID: 7793342144431978154, guid: c0abf9da87bfb8b42acf9f46ce50c26a, type: 3}
-  - {fileID: 2891337416751879703, guid: 31cb8d29b6bbbd54697fe7897b42fd29, type: 3}
+  candies:
+  - {fileID: -1996155794382772266, guid: 31cb8d29b6bbbd54697fe7897b42fd29, type: 3}
+  - {fileID: -43889084206901262, guid: c0abf9da87bfb8b42acf9f46ce50c26a, type: 3}
+  - {fileID: 1534212618478912768, guid: ab5ec84e24491e14ab6a3e37653b600f, type: 3}
+  - {fileID: -3629320437654141306, guid: 8187b9aa73aa8e24f98aa47364d657bc, type: 3}

@@ -26,13 +26,13 @@ public class StateManager : MonoBehaviour
     {
         currentState.OnUpdate();
 
-
     }
 
 
     public void SetupStates()
     {
         listOfStates.Add(Constants.STATE_SWAP, new SwapCandy(this));
+        listOfStates.Add(Constants.STATE_CHECKCOMBO, new CheckCombos(this));
 
     }
 

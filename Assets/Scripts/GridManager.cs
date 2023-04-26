@@ -18,6 +18,9 @@ public class GridManager : MonoBehaviour
 
     public CandyData candyDatas;
 
+    public bool isSwapped = false;
+    
+
     public Vector3 m_offset;
 
     private void Awake()
@@ -43,15 +46,17 @@ public class GridManager : MonoBehaviour
             for (int column = 0; column < maxColumn; column++)
             {
 
+                choseCandy(row, column);
+
                 var tile = Instantiate(tilePrefab, new Vector3(x, y, 0) + m_offset, Quaternion.identity, transform);
 
-                GameObject candy = Instantiate(candyDatas.candy[Random.Range(0, candyDatas.candy.Count)], tile.transform);
+                int witchCandy = Random.Range(0, candyDatas.candies.Count);
+
+                Candy candy = Instantiate(candyDatas.candies[witchCandy], tile.transform);
 
                 mapTiles[new Vector2Int(row, column)] = tile.data;
 
-
                 tile.Initialize(this, row, column, candy);
-
 
                 tile.transform.localScale = gridData.cellSize;
                 x -= 1 * (gridData.cellSize.x + gridData.cellGap.x);
@@ -94,41 +99,86 @@ public class GridManager : MonoBehaviour
     }
 
 
+    public Candy GetCandys(int row, int column)
+    {
+        if (column < 0 || column <= maxColumn || row < 0 || row <= maxRow)
+        {
+            Debug.Log("CandyNotFound");
+            return null;
+        }
+        else
+        {
+            Candy candy1 = mapTiles[new Vector2Int(row, column)].candyParent;
+            return candy1;
+        }
+        //if (mapTiles.ContainsKey(new Vector2Int(row, column)))
+        //{
+            
+        //}
+        
+        //return null;
+    }
+
     public bool CanSwap()
     {
         Tile FirstClickedTile = firstClick.GetComponent<Tile>();
         Tile SecondClickedTile = secondClick.GetComponent<Tile>();
 
-
         if (FirstClickedTile.data.column == SecondClickedTile.data.column)
         {
             if (Mathf.Abs(FirstClickedTile.data.row - SecondClickedTile.data.row) == 1)
+            {
+                isSwapped = true;
                 return true;
+            }
+                
             else
                 return false;
         }
         else if (FirstClickedTile.data.row == SecondClickedTile.data.row)
         {
             if (Mathf.Abs(FirstClickedTile.data.column - SecondClickedTile.data.column) == 1)
-                return true;
+            {
+                isSwapped = true;
+                return true; 
+            }
+                
             else
                 return false;
-
-
         }
         else return false;
 
     }
 
 
-    private void CheckFirstCombo(int row, int column)
+    public void choseCandy(int row, int column)
     {
 
+        //Choose what sprite to use for this cell
+        Candy left1 = GetCandys(row - 1, column);
+        Candy left2 = GetCandys(row - 2, column);
 
+        if (left2 != null && left1.ID == left2.ID)
+        {
+            Destroy(left2);
 
+        }
+
+        //Choose what sprite to use for this cell
+        Candy down1 = GetCandys(row, column - 1);
+        Candy down2 = GetCandys(row, column - 2);
+        if (down2 != null && down1.ID == down2.ID)
+        {
+
+        }
 
 
     }
+
+
+
+
+
 
 
 
