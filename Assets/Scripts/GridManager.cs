@@ -5,6 +5,12 @@ using UnityEngine.EventSystems;
 
 public class GridManager : MonoBehaviour
 {
+
+    //dividere le competenze con i controller
+    //aggiungere pull system 
+    //candyManager/controller 
+
+
     public Tile tilePrefab;
     public int maxRow;
     public int maxColumn;
@@ -26,6 +32,7 @@ public class GridManager : MonoBehaviour
     private void Awake()
     {
         gridData = GetComponent<Grid>();
+
     }
 
     private void Start()
@@ -86,6 +93,7 @@ public class GridManager : MonoBehaviour
 
     }
 
+
     public void SwapCandys(Transform Parent1, Transform Parent2)
     {
         var candy1 = Parent1.GetComponentInChildren<Candy>();
@@ -101,7 +109,8 @@ public class GridManager : MonoBehaviour
 
     public Candy GetCandys(int row, int column)
     {
-        if (column < 0 || column <= maxColumn || row < 0 || row <= maxRow)
+
+        if (column < 0 || column >= maxColumn || row < 0 || row >= maxRow)
         {
             Debug.Log("CandyNotFound");
             return null;
@@ -119,6 +128,7 @@ public class GridManager : MonoBehaviour
         //return null;
     }
 
+
     public bool CanSwap()
     {
         Tile FirstClickedTile = firstClick.GetComponent<Tile>();
@@ -129,6 +139,7 @@ public class GridManager : MonoBehaviour
             if (Mathf.Abs(FirstClickedTile.data.row - SecondClickedTile.data.row) == 1)
             {
                 isSwapped = true;
+                GameManager.instance.stateManager.ChangeState(Constants.STATE_CHECKCOMBO);
                 return true;
             }
                 
@@ -140,6 +151,7 @@ public class GridManager : MonoBehaviour
             if (Mathf.Abs(FirstClickedTile.data.column - SecondClickedTile.data.column) == 1)
             {
                 isSwapped = true;
+                GameManager.instance.stateManager.ChangeState(Constants.STATE_CHECKCOMBO);
                 return true; 
             }
                 
@@ -158,7 +170,7 @@ public class GridManager : MonoBehaviour
         Candy left1 = GetCandys(row - 1, column);
         Candy left2 = GetCandys(row - 2, column);
 
-        if (left2 != null && left1.ID == left2.ID)
+        if (left2 != null && left1!=null && left1.ID == left2.ID)
         {
             Destroy(left2);
 
@@ -169,7 +181,7 @@ public class GridManager : MonoBehaviour
         Candy down2 = GetCandys(row, column - 2);
         if (down2 != null && down1.ID == down2.ID)
         {
-
+            Destroy(down2);
         }
 
 

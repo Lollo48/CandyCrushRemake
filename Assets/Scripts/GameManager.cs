@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
     public GridManager gridManager;
-
+    public StateManager stateManager;
   
 
 

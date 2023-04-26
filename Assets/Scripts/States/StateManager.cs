@@ -8,8 +8,8 @@ public class StateManager : MonoBehaviour
     public State currentState;
     public Dictionary<string, State> listOfStates = new Dictionary<string, State>();
 
+    GridManager gridManager;
 
-   
 
     // Start is called before the first frame update
     void Awake()
@@ -17,7 +17,7 @@ public class StateManager : MonoBehaviour
         SetupStates();
         currentState = listOfStates[Constants.STATE_SWAP];
         currentState.OnEnter();
-        
+        gridManager = GameManager.instance.gridManager;
 
     }
 
@@ -25,6 +25,7 @@ public class StateManager : MonoBehaviour
     void Update()
     {
         currentState.OnUpdate();
+       
 
     }
 

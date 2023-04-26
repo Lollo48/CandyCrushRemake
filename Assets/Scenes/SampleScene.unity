@@ -242,6 +242,7 @@ MonoBehaviour:
   firstClick: {fileID: 0}
   secondClick: {fileID: 0}
   candyDatas: {fileID: 11400000, guid: 56545780ebdf2254f99337cf21e09fd9, type: 2}
+  isSwapped: 0
   m_offset: {x: -0.55, y: 1, z: 0}
 --- !u!156049354 &1153409010
 Grid:
@@ -410,6 +411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridManager: {fileID: 1153409009}
+  stateManager: {fileID: 1156552630}
 --- !u!4 &2008051516
 Transform:
   m_ObjectHideFlags: 0
