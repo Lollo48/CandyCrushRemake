@@ -53,13 +53,13 @@ public class GridManager : MonoBehaviour
             for (int column = 0; column < maxColumn; column++)
             {
 
-                choseCandy(row, column);
+                //choseCandy(row, column);
 
                 var tile = Instantiate(tilePrefab, new Vector3(x, y, 0) + m_offset, Quaternion.identity, transform);
 
-                int witchCandy = Random.Range(0, candyDatas.candies.Count);
+                //int witchCandy = Random.Range(0, candyDatas.candies.Count);
 
-                Candy candy = Instantiate(candyDatas.candies[witchCandy], tile.transform);
+                //Candy candy = Instantiate(candyDatas.candies[witchCandy], tile.transform);
 
                 mapTiles[new Vector2Int(row, column)] = tile.data;
 
