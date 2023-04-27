@@ -5,8 +5,7 @@ using UnityEngine;
 public class SwapCandy : State
 {
 
-    GridManager gridManager;
-
+    GridController gridController;
 
     public SwapCandy(StateManager sm) : base(sm)
     {
@@ -17,22 +16,22 @@ public class SwapCandy : State
     public override void OnEnter()
     {
         base.OnEnter();
-        gridManager = GameManager.instance.gridManager;
-  
+        gridController = GameManager.instance.gridController;
+        
     }
 
 
     public override void OnUpdate()
     {
         base.OnUpdate();
-        if(gridManager.secondClick!=null)
+        if (gridController.secondClick != null)
         {
-            if (gridManager.CanSwap())
+            if (gridController.CanSwap())
             {
-                gridManager.SwapCandys(gridManager.firstClick, gridManager.secondClick);
-                gridManager.EmptyClickPosition();
+                gridController.SwapCandys(gridController.firstClick, gridController.secondClick);
+                gridController.EmptyClickPosition();
             }
-            else gridManager.EmptyClickPosition();
+            else gridController.EmptyClickPosition();
 
         }
     }
@@ -40,7 +39,7 @@ public class SwapCandy : State
     public override void OnExit()
     {
         base.OnExit();
-        gridManager.isSwapped = false;
+        
 
     }
 

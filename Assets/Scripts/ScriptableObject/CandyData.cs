@@ -9,4 +9,5 @@ public class CandyData : ScriptableObject
     public List<Candy> candies = new List<Candy>(); 
     
 
+
 }

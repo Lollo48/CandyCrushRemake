@@ -6,7 +6,9 @@ public class GameManager : Singleton<GameManager>
 {
     public GridManager gridManager;
     public StateManager stateManager;
-  
+    public CandyController candyController;
+    public GridController gridController;
+
 
 
 }

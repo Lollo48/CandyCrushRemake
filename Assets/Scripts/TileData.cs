@@ -9,13 +9,12 @@ public class TileData
     public int column;
     public Candy candyParent;
     public GridManager gm;
-    
 
-    public TileData(GridManager gridManager, int newRow, int newColumn, Candy newCandyParent)
+
+    public TileData(GridManager gridManager, int newRow, int newColumn)
     {
         row = newRow;
         column = newColumn;
-        candyParent = newCandyParent;
         gm = gridManager;
     }
 }
