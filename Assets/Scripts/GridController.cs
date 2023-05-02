@@ -11,11 +11,15 @@ public class GridController : MonoBehaviour
     GridManager gridManager;
     CandyController CandyController;
 
+
+    
+
     private void Awake()
     {
         gridManager = GameManager.instance.gridManager;
         CandyController = GameManager.instance.candyController;
     }
+
 
     public void SaveClickPosition(Transform target)
     {
@@ -42,7 +46,14 @@ public class GridController : MonoBehaviour
 
         candy2.transform.SetParent(Parent1, false);
 
+        Parent1.GetComponent<Tile>().data.candyChildren = candy2;
+
+        Parent2.GetComponent<Tile>().data.candyChildren = candy1;
+
     }
+
+
+   
 
 
     public bool CanSwap()
@@ -54,8 +65,7 @@ public class GridController : MonoBehaviour
         {
             if (Mathf.Abs(FirstClickedTile.data.row - SecondClickedTile.data.row) == 1)
             {
-
-                //GameManager.instance.stateManager.ChangeState(Constants.STATE_CHECKCOMBO);
+                
                 return true;
             }
             else
@@ -67,10 +77,9 @@ public class GridController : MonoBehaviour
         }
         else if (FirstClickedTile.data.row == SecondClickedTile.data.row)
         {
-            if (Mathf.Abs(FirstClickedTile.data.column - SecondClickedTile.data.column) == 1)
+            if (Mathf.Abs(FirstClickedTile.data.column - SecondClickedTile.data.column) == 1 )
             {
-
-                //GameManager.instance.stateManager.ChangeState(Constants.STATE_CHECKCOMBO);
+                
                 return true;
             }
             else
@@ -90,9 +99,12 @@ public class GridController : MonoBehaviour
 
     }
 
+    
+
+ 
 
 
 
-   
+
 
 }

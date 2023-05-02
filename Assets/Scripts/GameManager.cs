@@ -8,7 +8,7 @@ public class GameManager : Singleton<GameManager>
     public StateManager stateManager;
     public CandyController candyController;
     public GridController gridController;
-
+    public CheckComboManager checkComboManager;
 
 
 }

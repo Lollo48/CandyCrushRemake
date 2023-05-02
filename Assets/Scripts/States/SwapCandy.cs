@@ -26,10 +26,11 @@ public class SwapCandy : State
         base.OnUpdate();
         if (gridController.secondClick != null)
         {
-            if (gridController.CanSwap())
+            if (gridController.CanSwap() )
             {
                 gridController.SwapCandys(gridController.firstClick, gridController.secondClick);
                 gridController.EmptyClickPosition();
+                GameManager.instance.stateManager.ChangeState(Constants.STATE_CHECKCOMBO);
             }
             else gridController.EmptyClickPosition();
 

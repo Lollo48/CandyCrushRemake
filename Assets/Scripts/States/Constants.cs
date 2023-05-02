@@ -6,8 +6,10 @@ using UnityEngine;
 public class Constants
 {
     public const string STATE_SWAP = "Swap";
+    public const string STATE_TRANSIZIONE = "Transizione";
     public const string STATE_CHECKCOMBO = "CheckCombo";
     public const string STATE_DESTROYCOMBO = "DestroyCombo";
     public const string STATE_REFILL = "ReFill";
 
 }
+

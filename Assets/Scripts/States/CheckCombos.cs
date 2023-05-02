@@ -5,7 +5,7 @@ using UnityEngine;
 public class CheckCombos : State
 {
     GridManager gridManager;
-
+    CheckComboManager checkComboManager;
 
     public CheckCombos(StateManager sm) : base(sm)
     {
@@ -17,6 +17,10 @@ public class CheckCombos : State
     {
         base.OnEnter();
         gridManager = GameManager.instance.gridManager;
+        checkComboManager = GameManager.instance.checkComboManager;
+        GameManager.instance.checkComboManager.FindRowCombination();
+        GameManager.instance.checkComboManager.RowCombo();
+        //Debug.Log(" id caramella (0,0)" + GameManager.instance.gridManager.mapTiles[new Vector2Int (0,0)].data.candyParent.ID );
 
     }
 
@@ -24,7 +28,9 @@ public class CheckCombos : State
     public override void OnUpdate()
     {
         base.OnUpdate();
-       
+        
+
+
     }
 
     public override void OnExit()
