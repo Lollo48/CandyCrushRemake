@@ -32,8 +32,9 @@ public class StateManager : MonoBehaviour
 
     public void SetupStates()
     {
-        listOfStates.Add(Constants.STATE_SWAP, new SwapCandy(this));
-        listOfStates.Add(Constants.STATE_CHECKCOMBO, new CheckCombos(this));
+        listOfStates.Add(Constants.STATE_SWAP, new SwapCandyState(this));
+        listOfStates.Add(Constants.STATE_CHECKCOMBO, new CheckCombosState(this));
+        listOfStates.Add(Constants.STATE_REFILL, new ReFillState(this));
 
     }
 
@@ -44,6 +45,7 @@ public class StateManager : MonoBehaviour
         currentState = listOfStates[key];
         currentState?.OnEnter();
     }
+
 
 
 }

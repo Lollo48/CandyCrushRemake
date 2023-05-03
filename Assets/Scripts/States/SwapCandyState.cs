@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwapCandy : State
+public class SwapCandyState : State
 {
 
     GridController gridController;
+    
 
-    public SwapCandy(StateManager sm) : base(sm)
+    public SwapCandyState(StateManager sm) : base(sm)
     {
         nameOfState = Constants.STATE_SWAP;
     }
@@ -30,6 +31,7 @@ public class SwapCandy : State
             {
                 gridController.SwapCandys(gridController.firstClick, gridController.secondClick);
                 gridController.EmptyClickPosition();
+                stateManager.ChangeState(Constants.STATE_CHECKCOMBO);
             }
             else gridController.EmptyClickPosition();
 

@@ -2,21 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CheckCombos : State
+public class ReFillState : State    
 {
-    GridManager gridManager;
-
-
-    public CheckCombos(StateManager sm) : base(sm)
+    public ReFillState(StateManager sm) : base(sm)
     {
-        nameOfState = Constants.STATE_CHECKCOMBO;
+        nameOfState = Constants.STATE_REFILL;
     }
 
 
     public override void OnEnter()
     {
         base.OnEnter();
-        gridManager = GameManager.instance.gridManager;
+       
 
     }
 
@@ -24,17 +21,15 @@ public class CheckCombos : State
     public override void OnUpdate()
     {
         base.OnUpdate();
-       
+        
     }
 
     public override void OnExit()
     {
         base.OnExit();
-        
+
 
     }
-
-
 
 
 

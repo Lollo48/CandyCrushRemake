@@ -42,15 +42,14 @@ public class CandyController : MonoBehaviour
                 }
 
                 Candy candy = Instantiate(candyDatas.candies[witchCandy],tile.transform);
+                
 
-                tile.data.candyParent = candy;
+                tile.data.candyChildren = candy;
 
             }
 
         }
     }
-
-
 
 
     public Candy GetCandys(int row, int column)
@@ -63,7 +62,7 @@ public class CandyController : MonoBehaviour
         }
         else
         {
-            Candy candy1 = gridManager.mapTiles[new Vector2Int(row, column)].data.candyParent;
+            Candy candy1 = gridManager.mapTiles[new Vector2Int(row, column)].data.candyChildren;
             //Debug.Log("candy" + candy1);
             return candy1;
         }
@@ -76,21 +75,24 @@ public class CandyController : MonoBehaviour
         IDcandyToSkipVertical = -1;
 
         //Choose what sprite to use for this cell
-        Candy right1 = GetCandys(row , column - 1);  
-        Candy right2 = GetCandys(row , column - 2); 
+        Candy right1 = GetCandys(row , column - 1);
+        Candy right2 = GetCandys(row , column - 2);
+        
         if (right2 != null && right1.ID == right2.ID) 
         {
             IDcandyToSkipHorizzontal = right2.ID;
-            
+
+
         }
 
         //Choose what sprite to use for this cell
-        Candy up1 = GetCandys(row - 1, column );  
+        Candy up1 = GetCandys(row - 1, column );
         Candy up2 = GetCandys(row - 2, column ); 
         if (up2 != null && up1.ID == up2.ID) 
         {
             IDcandyToSkipVertical = up2.ID;
-            
+
+
         }
         if (IDcandyToSkipVertical != -1 || IDcandyToSkipHorizzontal != -1) return true;
 

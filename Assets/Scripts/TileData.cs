@@ -7,7 +7,7 @@ public class TileData
 {
     public int row;
     public int column;
-    public Candy candyParent;
+    public Candy candyChildren;
     public GridManager gm;
 
 
