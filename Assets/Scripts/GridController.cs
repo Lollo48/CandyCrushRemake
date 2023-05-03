@@ -11,8 +11,10 @@ public class GridController : MonoBehaviour
     GridManager gridManager;
     CandyController CandyController;
 
-
-    
+    [HideInInspector]
+    public Transform target1;
+    [HideInInspector]
+    public Transform target2;
 
     private void Awake()
     {
@@ -23,9 +25,16 @@ public class GridController : MonoBehaviour
 
     public void SaveClickPosition(Transform target)
     {
-        if (firstClick == null) firstClick = target;
-        else secondClick = target;
-
+        if (firstClick == null)
+        {
+            firstClick = target;
+            target1 = target;
+        }
+        else
+        {
+            secondClick = target;
+            target2 = target;
+        }
     }
 
     public void EmptyClickPosition()
@@ -51,11 +60,6 @@ public class GridController : MonoBehaviour
         Parent2.GetComponent<Tile>().data.candyChildren = candy1;
 
     }
-
-
-
-   
-
 
     public bool CanSwap()
     {

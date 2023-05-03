@@ -18,10 +18,10 @@ public class CheckCombosState : State
         base.OnEnter();
         checkComboManager = GameManager.instance.checkComboManager;
         gridController = GameManager.instance.gridController;
-        GameManager.instance.checkComboManager.StoreCandiesForRowCombination();
-        GameManager.instance.checkComboManager.StoreCandiesForColumnCombination();
-        GameManager.instance.checkComboManager.ColumnCombo();
-        GameManager.instance.checkComboManager.RowCombo();
+        checkComboManager.StoreCandiesForRowCombination();
+        checkComboManager.StoreCandiesForColumnCombination();
+        checkComboManager.ColumnCombo();
+        checkComboManager.RowCombo();
         
         //Debug.Log(" id caramella (0,0)" + GameManager.instance.gridManager.mapTiles[new Vector2Int (0,0)].data.candyParent.ID );
 
@@ -33,13 +33,15 @@ public class CheckCombosState : State
         base.OnUpdate();
         if (GameManager.instance.checkComboManager.AllCombos.Count <= 2)
         {
-            GameManager.instance.stateManager.ChangeState(Constants.STATE_SWAP);
+            gridController.EmptyClickPosition();
+            gridController.SwapCandys(gridController.target2, gridController.target1);
+            stateManager.ChangeState(Constants.STATE_SWAP);
         }
         else
         {
-            GameManager.instance.checkComboManager.Destroyer(GameManager.instance.checkComboManager.AllCombos);
-            GameManager.instance.checkComboManager.ListClear();
-            GameManager.instance.stateManager.ChangeState(Constants.STATE_REFILL);
+            checkComboManager.Destroyer(checkComboManager.AllCombos);
+            checkComboManager.ListClear();
+            stateManager.ChangeState(Constants.STATE_REFILL);
         }
 
 
@@ -49,8 +51,8 @@ public class CheckCombosState : State
     public override void OnExit()
     {
         base.OnExit();
-
         
+
 
     }
 

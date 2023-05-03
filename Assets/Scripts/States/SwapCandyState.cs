@@ -6,6 +6,7 @@ public class SwapCandyState : State
 {
 
     GridController gridController;
+    
 
     public SwapCandyState(StateManager sm) : base(sm)
     {
@@ -30,7 +31,7 @@ public class SwapCandyState : State
             {
                 gridController.SwapCandys(gridController.firstClick, gridController.secondClick);
                 gridController.EmptyClickPosition();
-                GameManager.instance.stateManager.ChangeState(Constants.STATE_CHECKCOMBO);
+                stateManager.ChangeState(Constants.STATE_CHECKCOMBO);
             }
             else gridController.EmptyClickPosition();
 
