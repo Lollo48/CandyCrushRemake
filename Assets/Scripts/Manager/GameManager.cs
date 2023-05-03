@@ -9,6 +9,9 @@ public class GameManager : Singleton<GameManager>
     public CandyController candyController;
     public GridController gridController;
     public CheckComboManager checkComboManager;
+    public RefillManager reFillManager;
+
+
 
 
 }

@@ -6,20 +6,11 @@ using UnityEngine.EventSystems;
 public class GridManager : MonoBehaviour
 {
 
-    //dividere le competenze con i controller
-    //aggiungere pull system 
-    //candyManager/controller 
-
-
     public Tile tilePrefab;
     public int maxRow;
     public int maxColumn;
     private Grid gridData;
     public Dictionary<Vector2Int, Tile> mapTiles = new Dictionary<Vector2Int, Tile>();
-
-
-    
-
 
     public Vector3 m_offset;
 

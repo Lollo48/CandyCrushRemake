@@ -8,20 +8,12 @@ public class GridController : MonoBehaviour
     public Transform firstClick;
     public Transform secondClick;
 
-    GridManager gridManager;
-    CandyController CandyController;
-
     [HideInInspector]
     public Transform target1;
     [HideInInspector]
     public Transform target2;
 
-    private void Awake()
-    {
-        gridManager = GameManager.instance.gridManager;
-        CandyController = GameManager.instance.candyController;
-    }
-
+   
 
     public void SaveClickPosition(Transform target)
     {

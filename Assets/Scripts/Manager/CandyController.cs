@@ -13,7 +13,7 @@ public class CandyController : MonoBehaviour
     private int IDcandyToSkipHorizzontal;
 
 
- 
+    
 
     // Start is called before the first frame update
     void Awake()

@@ -14,7 +14,6 @@ public class Tile : MonoBehaviour
         gridController = GameManager.instance.gridController;
     }
 
-   
 
     public void Initialize(GridManager gridM, int rowInit, int columnInit)
     {

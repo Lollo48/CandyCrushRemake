@@ -9,19 +9,12 @@ public class CheckComboManager : MonoBehaviour
     GridManager gridManager;
     CandyController CandyController;
 
-
     private List<Candy> CandiesStoredRowCombination = new List<Candy>();
-
+    [HideInInspector]
     public List<Candy> CombosRowList = new List<Candy>();
-
-
     private List<Candy> CandiesStoredColumnCombination = new List<Candy>();
-
+    [HideInInspector]
     public List<Candy> CombosColumnList = new List<Candy>();
-
-
-
-
     public List<Candy> AllCombos = new List<Candy>();
 
     private void Awake()
@@ -29,6 +22,7 @@ public class CheckComboManager : MonoBehaviour
         gridManager = GameManager.instance.gridManager;
         CandyController = GameManager.instance.candyController;
     }
+
 
 
     public void StoreCandiesForRowCombination()

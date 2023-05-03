@@ -31,7 +31,7 @@ public class CheckCombosState : State
     public override void OnUpdate()
     {
         base.OnUpdate();
-        if (GameManager.instance.checkComboManager.AllCombos.Count <= 2)
+        if (checkComboManager.AllCombos.Count <= 2)
         {
             gridController.EmptyClickPosition();
             gridController.SwapCandys(gridController.target2, gridController.target1);

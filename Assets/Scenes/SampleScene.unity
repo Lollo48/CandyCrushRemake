@@ -168,6 +168,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstClick: {fileID: 0}
   secondClick: {fileID: 0}
+  target1: {fileID: 0}
+  target2: {fileID: 0}
 --- !u!1 &163769309
 GameObject:
   m_ObjectHideFlags: 0
@@ -589,6 +591,7 @@ MonoBehaviour:
   candyController: {fileID: 1392677585}
   gridController: {fileID: 123150356}
   checkComboManager: {fileID: 163769310}
+  reFillManager: {fileID: 1925326892}
 --- !u!4 &2008051516
 Transform:
   m_ObjectHideFlags: 0
