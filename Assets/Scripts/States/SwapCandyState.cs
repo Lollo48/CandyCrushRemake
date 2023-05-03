@@ -5,19 +5,19 @@ using UnityEngine;
 public class SwapCandyState : State
 {
 
-    GridController gridController;
+    GridControllerManager gridController;
     
 
     public SwapCandyState(StateManager sm) : base(sm)
     {
-        nameOfState = Constants.STATE_SWAP;
+        m_nameOfState = Constants.STATE_SWAP;
     }
 
     
     public override void OnEnter()
     {
         base.OnEnter();
-        gridController = GameManager.instance.gridController;
+        gridController = GameManager.instance.m_gridControllerManager;
         
     }
 
@@ -25,11 +25,11 @@ public class SwapCandyState : State
     public override void OnUpdate()
     {
         base.OnUpdate();
-        if (gridController.secondClick != null)
+        if (gridController.m_secondClick != null)
         {
             if (gridController.CanSwap())
             {
-                gridController.SwapCandys(gridController.firstClick, gridController.secondClick);
+                gridController.SwapCandys(gridController.m_firstClick, gridController.m_secondClick);
                 gridController.EmptyClickPosition();
                 stateManager.ChangeState(Constants.STATE_CHECKCOMBO);
             }

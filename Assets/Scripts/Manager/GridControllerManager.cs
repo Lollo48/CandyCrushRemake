@@ -2,37 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GridController : MonoBehaviour
+public class GridControllerManager : MonoBehaviour
 {
 
-    public Transform firstClick;
-    public Transform secondClick;
+    public Transform m_firstClick;
+    public Transform m_secondClick;
 
     [HideInInspector]
-    public Transform target1;
+    public Transform m_target1;
     [HideInInspector]
-    public Transform target2;
+    public Transform m_target2;
 
    
 
     public void SaveClickPosition(Transform target)
     {
-        if (firstClick == null)
+        if (m_firstClick == null)
         {
-            firstClick = target;
-            target1 = target;
+            m_firstClick = target;
+            m_target1 = target;
         }
         else
         {
-            secondClick = target;
-            target2 = target;
+            m_secondClick = target;
+            m_target2 = target;
         }
     }
 
     public void EmptyClickPosition()
     {
-        firstClick = null;
-        secondClick = null;
+        m_firstClick = null;
+        m_secondClick = null;
 
 
     }
@@ -55,8 +55,8 @@ public class GridController : MonoBehaviour
 
     public bool CanSwap()
     {
-        Tile FirstClickedTile = firstClick.GetComponent<Tile>();
-        Tile SecondClickedTile = secondClick.GetComponent<Tile>();
+        Tile FirstClickedTile = m_firstClick.GetComponent<Tile>();
+        Tile SecondClickedTile = m_secondClick.GetComponent<Tile>();
 
         if (FirstClickedTile.data.column == SecondClickedTile.data.column)
         {

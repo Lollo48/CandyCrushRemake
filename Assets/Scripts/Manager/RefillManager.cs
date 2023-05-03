@@ -9,15 +9,15 @@ public class RefillManager : MonoBehaviour
 
     private void Awake()
     {
-        gridManager = GameManager.instance.gridManager;
+        gridManager = GameManager.instance.m_gridManager;
     }
 
 
     private void CheckForEmptyCandies()
     {
-        for (int v = 0; v < gridManager.maxRow; v++)
+        for (int v = 0; v < gridManager.m_maxRow; v++)
         {
-            for (int i = 0; i < gridManager.maxColumn; i++)
+            for (int i = 0; i < gridManager.m_maxColumn; i++)
             {
 
 

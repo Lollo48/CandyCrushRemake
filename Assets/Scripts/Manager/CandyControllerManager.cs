@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CandyController : MonoBehaviour
+public class CandyControllerManager : MonoBehaviour
 {
 
     GridManager gridManager;
 
-    public CandyData candyDatas;
+    public CandyData m_candyDatas;
 
     private int IDcandyToSkipVertical;
     private int IDcandyToSkipHorizzontal;
@@ -18,30 +18,30 @@ public class CandyController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        gridManager = GameManager.instance.gridManager;
-        CandySpawn();
+        gridManager = GameManager.instance.m_gridManager;
+        CandiesSpawn();
 
     }
 
 
 
-    public void CandySpawn()
+    public void CandiesSpawn()
     {
-        for (int row = 0; row < gridManager.maxRow; row++)
+        for (int row = 0; row < gridManager.m_maxRow; row++)
         {
-            for (int column = 0; column < gridManager.maxColumn; column++)
+            for (int column = 0; column < gridManager.m_maxColumn; column++)
             {
                 
-                Tile tile = gridManager.mapTiles[new Vector2Int(row, column)];
+                Tile tile = gridManager.m_mapTiles[new Vector2Int(row, column)];
 
-                int witchCandy = Random.Range(0, candyDatas.candies.Count);
+                int witchCandy = Random.Range(0, m_candyDatas.m_candies.Count);
 
                 if (choseCandy(row, column))
                 {
-                    while (witchCandy==IDcandyToSkipVertical || witchCandy == IDcandyToSkipHorizzontal) witchCandy = Random.Range(0, candyDatas.candies.Count);
+                    while (witchCandy==IDcandyToSkipVertical || witchCandy == IDcandyToSkipHorizzontal) witchCandy = Random.Range(0, m_candyDatas.m_candies.Count);
                 }
 
-                Candy candy = Instantiate(candyDatas.candies[witchCandy],tile.transform);
+                Candy candy = Instantiate(m_candyDatas.m_candies[witchCandy],tile.transform);
                 
 
                 tile.data.candyChildren = candy;
@@ -52,17 +52,17 @@ public class CandyController : MonoBehaviour
     }
 
 
-    public Candy GetCandys(int row, int column)
+    public Candy GetCandies(int row, int column)
     {
 
-        if (column < 0 || column >= gridManager.maxColumn || row < 0 || row >= gridManager.maxRow)
+        if (column < 0 || column >= gridManager.m_maxColumn || row < 0 || row >= gridManager.m_maxRow)
         {
             //Debug.Log("CandyNotFound");
             return null;
         }
         else
         {
-            Candy candy1 = gridManager.mapTiles[new Vector2Int(row, column)].data.candyChildren;
+            Candy candy1 = gridManager.m_mapTiles[new Vector2Int(row, column)].data.candyChildren;
             //Debug.Log("candy" + candy1);
             return candy1;
         }
@@ -75,8 +75,8 @@ public class CandyController : MonoBehaviour
         IDcandyToSkipVertical = -1;
 
         //Choose what sprite to use for this cell
-        Candy right1 = GetCandys(row , column - 1);
-        Candy right2 = GetCandys(row , column - 2);
+        Candy right1 = GetCandies(row , column - 1);
+        Candy right2 = GetCandies(row , column - 2);
         
         if (right2 != null && right1.ID == right2.ID) 
         {
@@ -86,8 +86,8 @@ public class CandyController : MonoBehaviour
         }
 
         //Choose what sprite to use for this cell
-        Candy up1 = GetCandys(row - 1, column );
-        Candy up2 = GetCandys(row - 2, column ); 
+        Candy up1 = GetCandies(row - 1, column );
+        Candy up2 = GetCandies(row - 2, column ); 
         if (up2 != null && up1.ID == up2.ID) 
         {
             IDcandyToSkipVertical = up2.ID;

@@ -6,12 +6,12 @@ using UnityEngine.EventSystems;
 public class Tile : MonoBehaviour
 {
     public TileData data;
-    GridController gridController;
+    GridControllerManager gridController;
 
 
     private void Awake()
     {
-        gridController = GameManager.instance.gridController;
+        gridController = GameManager.instance.m_gridControllerManager;
     }
 
 

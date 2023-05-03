@@ -6,7 +6,7 @@ public class ReFillState : State
 {
     public ReFillState(StateManager sm) : base(sm)
     {
-        nameOfState = Constants.STATE_REFILL;
+        m_nameOfState = Constants.STATE_REFILL;
     }
 
 

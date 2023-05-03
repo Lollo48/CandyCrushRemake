@@ -7,33 +7,31 @@ public class CheckComboManager : MonoBehaviour
 
 
     GridManager gridManager;
-    CandyController CandyController;
+    CandyControllerManager candyController;
 
-    private List<Candy> CandiesStoredRowCombination = new List<Candy>();
-    [HideInInspector]
-    public List<Candy> CombosRowList = new List<Candy>();
-    private List<Candy> CandiesStoredColumnCombination = new List<Candy>();
-    [HideInInspector]
-    public List<Candy> CombosColumnList = new List<Candy>();
-    public List<Candy> AllCombos = new List<Candy>();
+    private List<Candy> candiesStoredRowCombination = new List<Candy>();
+    private List<Candy> combosRowList = new List<Candy>();
+
+    private List<Candy> candiesStoredColumnCombination = new List<Candy>();
+    private List<Candy> combosColumnList = new List<Candy>();
+
+    public List<Candy> m_allCombos = new List<Candy>();
 
     private void Awake()
     {
-        gridManager = GameManager.instance.gridManager;
-        CandyController = GameManager.instance.candyController;
+        gridManager = GameManager.instance.m_gridManager;
+        candyController = GameManager.instance.m_candyControllerManager;
     }
-
-
 
     public void StoreCandiesForRowCombination()
     {
-        for (int v = 0; v < gridManager.maxRow; v++)
+        for (int v = 0; v < gridManager.m_maxRow; v++)
         {
-            for (int i = 0; i < gridManager.maxColumn; i++)
+            for (int i = 0; i < gridManager.m_maxColumn; i++)
             {
-                Candy currentCandy = CandyController.GetCandys(v, i);
+                Candy currentCandy = candyController.GetCandies(v, i);
 
-                CandiesStoredRowCombination.Add(currentCandy);
+                candiesStoredRowCombination.Add(currentCandy);
 
             }    
         }
@@ -42,13 +40,13 @@ public class CheckComboManager : MonoBehaviour
 
     public void StoreCandiesForColumnCombination()
     {
-        for (int v = 0; v < gridManager.maxColumn; v++)
+        for (int v = 0; v < gridManager.m_maxColumn; v++)
         {
-            for (int i = 0; i < gridManager.maxRow; i++)
+            for (int i = 0; i < gridManager.m_maxRow; i++)
             {
-                Candy currentCandy = CandyController.GetCandys(i, v);
+                Candy currentCandy = candyController.GetCandies(i, v);
 
-                CandiesStoredColumnCombination.Add(currentCandy);
+                candiesStoredColumnCombination.Add(currentCandy);
 
             }
         }
@@ -58,36 +56,36 @@ public class CheckComboManager : MonoBehaviour
     public void RowCombo()
     {
         int v = -1;
-        for (int i = 0; i < CandiesStoredRowCombination.Count; i++)
+        for (int i = 0; i < candiesStoredRowCombination.Count; i++)
         {
             v += 1;
             if (i == 0) continue;
 
-            if (CandiesStoredRowCombination[i].ID == CandiesStoredRowCombination[i - 1].ID)
+            if (candiesStoredRowCombination[i].ID == candiesStoredRowCombination[i - 1].ID)
             {
-                CombosRowList.Add(CandiesStoredRowCombination[i - 1]);
+                combosRowList.Add(candiesStoredRowCombination[i - 1]);
             }
             else
             {
-                if (CombosRowList.Count >= 2)
+                if (combosRowList.Count >= 2)
                 {
-                    CombosRowList.Add(CandiesStoredRowCombination[i - 1]);
-                    AllCombos.AddRange(CombosRowList);
-                    CombosRowList.Clear();
+                    combosRowList.Add(candiesStoredRowCombination[i - 1]);
+                    m_allCombos.AddRange(combosRowList);
+                    combosRowList.Clear();
                 }
-                else CombosRowList.Clear();
+                else combosRowList.Clear();
             }
 
-            if (v == gridManager.maxColumn)
+            if (v == gridManager.m_maxColumn)
             {
-                if (CombosRowList.Count >= 3)
+                if (combosRowList.Count >= 3)
                 {
-                    AllCombos.AddRange(CombosRowList);
+                    m_allCombos.AddRange(combosRowList);
                     v = 0;
                 }
                 else
                 {
-                    CombosRowList.Clear();
+                    combosRowList.Clear();
                     v = 0;
                 }
 
@@ -101,37 +99,37 @@ public class CheckComboManager : MonoBehaviour
     public void ColumnCombo()
     {
         int v = -1;
-        for (int i = 0; i < CandiesStoredColumnCombination.Count; i++)
+        for (int i = 0; i < candiesStoredColumnCombination.Count; i++)
         {
             v += 1;
 
             if (i == 0) continue;
 
-            if (CandiesStoredColumnCombination[i].ID == CandiesStoredColumnCombination[i - 1].ID)
+            if (candiesStoredColumnCombination[i].ID == candiesStoredColumnCombination[i - 1].ID)
             {
-                CombosColumnList.Add(CandiesStoredColumnCombination[i - 1]);
+                combosColumnList.Add(candiesStoredColumnCombination[i - 1]);
             }
             else
             {
-                if (CombosColumnList.Count >= 2)
+                if (combosColumnList.Count >= 2)
                 {
-                    CombosColumnList.Add(CandiesStoredColumnCombination[i - 1]);
-                    AllCombos.AddRange(CombosColumnList);
-                    CombosColumnList.Clear();
+                    combosColumnList.Add(candiesStoredColumnCombination[i - 1]);
+                    m_allCombos.AddRange(combosColumnList);
+                    combosColumnList.Clear();
                 }
-                else CombosColumnList.Clear();
+                else combosColumnList.Clear();
             }
 
-            if (v == gridManager.maxRow)
+            if (v == gridManager.m_maxRow)
             {
-                if (CombosColumnList.Count >= 3)
+                if (combosColumnList.Count >= 3)
                 {
-                    AllCombos.AddRange(CombosColumnList);
+                    m_allCombos.AddRange(combosColumnList);
                     v = 0;
                 }
                 else
                 {
-                    CombosColumnList.Clear();
+                    combosColumnList.Clear();
                     v = 0;
                 }
 
@@ -145,11 +143,11 @@ public class CheckComboManager : MonoBehaviour
    
     public void ListClear()
     {
-        CombosColumnList.Clear();
-        CandiesStoredColumnCombination.Clear();
-        CombosRowList.Clear();
-        CandiesStoredRowCombination.Clear();
-        AllCombos.Clear();
+        combosColumnList.Clear();
+        candiesStoredColumnCombination.Clear();
+        combosRowList.Clear();
+        candiesStoredRowCombination.Clear();
+        m_allCombos.Clear();
         
 
     }

@@ -5,19 +5,19 @@ using UnityEngine;
 public class CheckCombosState : State
 {
     CheckComboManager checkComboManager;
-    GridController gridController;
+    GridControllerManager gridController;
 
     public CheckCombosState(StateManager sm) : base(sm)
     {
-        nameOfState = Constants.STATE_CHECKCOMBO;
+        m_nameOfState = Constants.STATE_CHECKCOMBO;
     }
 
 
     public override void OnEnter()
     {
         base.OnEnter();
-        checkComboManager = GameManager.instance.checkComboManager;
-        gridController = GameManager.instance.gridController;
+        checkComboManager = GameManager.instance.m_checkComboManager;
+        gridController = GameManager.instance.m_gridControllerManager;
         checkComboManager.StoreCandiesForRowCombination();
         checkComboManager.StoreCandiesForColumnCombination();
         checkComboManager.ColumnCombo();
@@ -31,15 +31,15 @@ public class CheckCombosState : State
     public override void OnUpdate()
     {
         base.OnUpdate();
-        if (checkComboManager.AllCombos.Count <= 2)
+        if (checkComboManager.m_allCombos.Count <= 2)
         {
             gridController.EmptyClickPosition();
-            gridController.SwapCandys(gridController.target2, gridController.target1);
+            gridController.SwapCandys(gridController.m_target2, gridController.m_target1);
             stateManager.ChangeState(Constants.STATE_SWAP);
         }
         else
         {
-            checkComboManager.Destroyer(checkComboManager.AllCombos);
+            checkComboManager.Destroyer(checkComboManager.m_allCombos);
             checkComboManager.ListClear();
             stateManager.ChangeState(Constants.STATE_REFILL);
         }

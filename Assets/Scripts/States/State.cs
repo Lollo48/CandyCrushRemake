@@ -6,7 +6,7 @@ using UnityEngine;
 public class State
 {
     protected StateManager stateManager;
-    public string nameOfState;
+    public string m_nameOfState;
 
     public State(StateManager sm)
     {
