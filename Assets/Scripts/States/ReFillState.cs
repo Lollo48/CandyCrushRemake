@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ReFillState : State    
 {
+
+    RefillManager refillManager;
+
     public ReFillState(StateManager sm) : base(sm)
     {
         m_nameOfState = Constants.STATE_REFILL;
@@ -13,7 +16,8 @@ public class ReFillState : State
     public override void OnEnter()
     {
         base.OnEnter();
-       
+        refillManager = GameManager.instance.m_reFillManager;
+        refillManager.CheckForEmptyCandies();
 
     }
 

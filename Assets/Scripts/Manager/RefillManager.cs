@@ -13,13 +13,18 @@ public class RefillManager : MonoBehaviour
     }
 
 
-    private void CheckForEmptyCandies()
+    public void CheckForEmptyCandies()
     {
         for (int v = 0; v < gridManager.m_maxRow; v++)
         {
             for (int i = 0; i < gridManager.m_maxColumn; i++)
             {
+                if(gridManager.m_mapTiles[new Vector2Int(v, i)].data.candyChildren == null)
+                {
 
+                    Debug.Log("missing candy " );
+
+                }
 
             }
         }
