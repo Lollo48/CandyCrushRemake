@@ -69,7 +69,7 @@ public class CandyControllerManager : MonoBehaviour
        
     }
 
-    bool choseCandy(int row,int column)
+    public bool choseCandy(int row,int column)
     {
         IDcandyToSkipHorizzontal = -1; //valore null 
         IDcandyToSkipVertical = -1;

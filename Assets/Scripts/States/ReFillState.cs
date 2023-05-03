@@ -6,6 +6,7 @@ public class ReFillState : State
 {
 
     RefillManager refillManager;
+    GridManager gridManager;
 
     public ReFillState(StateManager sm) : base(sm)
     {
@@ -17,7 +18,9 @@ public class ReFillState : State
     {
         base.OnEnter();
         refillManager = GameManager.instance.m_reFillManager;
+        gridManager = GameManager.instance.m_gridManager;
         refillManager.CheckForEmptyCandies();
+
 
     }
 
@@ -25,7 +28,12 @@ public class ReFillState : State
     public override void OnUpdate()
     {
         base.OnUpdate();
-        
+       
+       if(!refillManager.isEmpty())
+       {
+            stateManager.ChangeState(Constants.STATE_CHECKCOMBO);
+        }
+
     }
 
     public override void OnExit()
