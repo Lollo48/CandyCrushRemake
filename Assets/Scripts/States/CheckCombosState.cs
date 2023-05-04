@@ -5,19 +5,22 @@ using UnityEngine;
 public class CheckCombosState : State
 {
     CheckComboManager checkComboManager;
-    GridController gridController;
+    GridControllerManager gridController;
+    RefillManager refillManager;
 
     public CheckCombosState(StateManager sm) : base(sm)
     {
-        nameOfState = Constants.STATE_CHECKCOMBO;
+        m_nameOfState = Constants.STATE_CHECKCOMBO;
     }
 
 
     public override void OnEnter()
     {
         base.OnEnter();
-        checkComboManager = GameManager.instance.checkComboManager;
-        gridController = GameManager.instance.gridController;
+        
+        checkComboManager = GameManager.instance.m_checkComboManager;
+        gridController = GameManager.instance.m_gridControllerManager;
+        refillManager = GameManager.instance.m_reFillManager;
         checkComboManager.StoreCandiesForRowCombination();
         checkComboManager.StoreCandiesForColumnCombination();
         checkComboManager.ColumnCombo();
@@ -31,18 +34,27 @@ public class CheckCombosState : State
     public override void OnUpdate()
     {
         base.OnUpdate();
-        if (GameManager.instance.checkComboManager.AllCombos.Count <= 2)
+        if (!refillManager.isEmpty())
         {
-            gridController.EmptyClickPosition();
-            gridController.SwapCandys(gridController.target2, gridController.target1);
-            stateManager.ChangeState(Constants.STATE_SWAP);
+            if (checkComboManager.m_allCombos.Count <= 2)
+            {
+                gridController.EmptyClickPosition();
+                gridController.SwapCandys(gridController.m_target2, gridController.m_target1);
+                
+                stateManager.ChangeState(Constants.STATE_SWAP);
+            }
+            else
+            {
+                checkComboManager.Destroyer(checkComboManager.m_allCombos);
+                stateManager.ChangeState(Constants.STATE_REFILL);
+
+            }
         }
         else
         {
-            checkComboManager.Destroyer(checkComboManager.AllCombos);
-            checkComboManager.ListClear();
+            
             stateManager.ChangeState(Constants.STATE_REFILL);
-        }
+        }    
 
 
 
@@ -51,7 +63,7 @@ public class CheckCombosState : State
     public override void OnExit()
     {
         base.OnExit();
-        
+        checkComboManager.ListClear();
 
 
     }
