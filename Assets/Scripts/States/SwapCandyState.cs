@@ -30,7 +30,7 @@ public class SwapCandyState : State
             if (gridController.CanSwap())
             {
                 gridController.SwapCandys(gridController.m_firstClick, gridController.m_secondClick);
-                gridController.EmptyClickPosition();
+                //gridController.StartCoroutine(gridController.SwapCandyesWithLerp(gridController.m_firstClick, gridController.m_secondClick));
                 stateManager.ChangeState(Constants.STATE_CHECKCOMBO);
             }
             else gridController.EmptyClickPosition();
@@ -41,7 +41,7 @@ public class SwapCandyState : State
     public override void OnExit()
     {
         base.OnExit();
-        
+        gridController.EmptyClickPosition();
 
     }
 

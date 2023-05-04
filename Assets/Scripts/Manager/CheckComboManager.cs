@@ -158,9 +158,11 @@ public class CheckComboManager : MonoBehaviour
     {
         for(int i =0; i < candies.Count; i++)
         {
+            
             Tile tile = candies[i].GetComponentInParent<Tile>();
 
-            Destroy(tile.data.candyChildren.gameObject);
+
+            Destroy(candies[i].gameObject);
 
             tile.data.candyChildren = null;
         }

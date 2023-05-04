@@ -6,6 +6,7 @@ public class RefillManager : MonoBehaviour
 {
     GridManager gridManager;
     CandyControllerManager candyController;
+    StateManager stateManager;
 
     private int IDcandyToSkipVertical;
     private int IDcandyToSkipHorizzontal;
@@ -14,6 +15,7 @@ public class RefillManager : MonoBehaviour
     {
         gridManager = GameManager.instance.m_gridManager;
         candyController = GameManager.instance.m_candyControllerManager;
+        stateManager = GameManager.instance.m_stateManager;
     }
 
 
@@ -66,5 +68,8 @@ public class RefillManager : MonoBehaviour
     }
 
 
+
+        
+    
 
 }
