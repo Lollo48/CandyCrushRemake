@@ -4,40 +4,40 @@ using UnityEngine;
 
 public class RefillManager : MonoBehaviour
 {
-    GridManager gridManager;
-    CandyControllerManager candyController;
-    StateManager stateManager;
+    GridManager m_gridManager;
+    CandyControllerManager m_candyController;
 
-    private int IDcandyToSkipVertical;
-    private int IDcandyToSkipHorizzontal;
+
+    private int m_idCandyToSkipVertical;
+    private int m_idCandyToSkipHorizzontal;
 
     private void Awake()
     {
-        gridManager = GameManager.instance.m_gridManager;
-        candyController = GameManager.instance.m_candyControllerManager;
-        stateManager = GameManager.instance.m_stateManager;
+        m_gridManager = GameManager.instance.m_gridManager;
+        m_candyController = GameManager.instance.m_candyControllerManager;
+
     }
 
 
     public void CheckForEmptyCandies()
     {
-        for (int v = 0; v < gridManager.m_maxRow; v++)
+        for (int v = 0; v < m_gridManager.MaxRow; v++)
         {
-            for (int i = 0; i < gridManager.m_maxColumn; i++)
+            for (int i = 0; i < m_gridManager.MaxColumn; i++)
             {
-                if(gridManager.m_mapTiles[new Vector2Int(v, i)].data.candyChildren == null)
+                if(m_gridManager.MapTiles[new Vector2Int(v, i)].data.candyChildren == null)
                 {
 
-                    Tile tile = gridManager.m_mapTiles[new Vector2Int(v, i)];
+                    Tile tile = m_gridManager.MapTiles[new Vector2Int(v, i)];
 
-                    int witchCandy = Random.Range(0, candyController.m_candyDatas.m_candies.Count);
+                    int witchCandy = Random.Range(0, m_candyController.m_candyDatas.m_candies.Count);
 
-                    if (candyController.choseCandy(v, i))
+                    if (m_candyController.choseCandy(v, i))
                     {
-                        while (witchCandy == IDcandyToSkipVertical || witchCandy == IDcandyToSkipHorizzontal) witchCandy = Random.Range(0, candyController.m_candyDatas.m_candies.Count);
+                        while (witchCandy == m_idCandyToSkipVertical || witchCandy == m_idCandyToSkipHorizzontal) witchCandy = Random.Range(0, m_candyController.m_candyDatas.m_candies.Count);
                     }
 
-                    Candy candy = Instantiate(candyController.m_candyDatas.m_candies[witchCandy], tile.transform);
+                    Candy candy = Instantiate(m_candyController.m_candyDatas.m_candies[witchCandy], tile.transform);
 
 
                     tile.data.candyChildren = candy;
@@ -51,11 +51,11 @@ public class RefillManager : MonoBehaviour
 
     public bool isEmpty()
     {
-        for (int v = 0; v < gridManager.m_maxRow; v++)
+        for (int v = 0; v < m_gridManager.MaxRow; v++)
         {
-            for (int i = 0; i < gridManager.m_maxColumn; i++)
+            for (int i = 0; i < m_gridManager.MaxColumn; i++)
             {
-                if (gridManager.m_mapTiles[new Vector2Int(v, i)].data.candyChildren == null)
+                if (m_gridManager.MapTiles[new Vector2Int(v, i)].data.candyChildren == null)
                 {
 
                     return true;

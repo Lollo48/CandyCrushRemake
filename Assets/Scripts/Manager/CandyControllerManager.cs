@@ -27,12 +27,12 @@ public class CandyControllerManager : MonoBehaviour
 
     public void CandiesSpawn()
     {
-        for (int row = 0; row < gridManager.m_maxRow; row++)
+        for (int row = 0; row < gridManager.MaxRow; row++)
         {
-            for (int column = 0; column < gridManager.m_maxColumn; column++)
+            for (int column = 0; column < gridManager.MaxColumn; column++)
             {
                 
-                Tile tile = gridManager.m_mapTiles[new Vector2Int(row, column)];
+                Tile tile = gridManager.MapTiles[new Vector2Int(row, column)];
 
                 int witchCandy = Random.Range(0, m_candyDatas.m_candies.Count);
 
@@ -55,14 +55,14 @@ public class CandyControllerManager : MonoBehaviour
     public Candy GetCandies(int row, int column)
     {
 
-        if (column < 0 || column >= gridManager.m_maxColumn || row < 0 || row >= gridManager.m_maxRow)
+        if (column < 0 || column >= gridManager.MaxColumn || row < 0 || row >= gridManager.MaxRow)
         {
             //Debug.Log("CandyNotFound");
             return null;
         }
         else
         {
-            Candy candy1 = gridManager.m_mapTiles[new Vector2Int(row, column)].data.candyChildren;
+            Candy candy1 = gridManager.MapTiles[new Vector2Int(row, column)].data.candyChildren;
             //Debug.Log("candy" + candy1);
             return candy1;
         }

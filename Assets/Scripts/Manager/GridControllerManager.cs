@@ -5,33 +5,34 @@ using UnityEngine;
 public class GridControllerManager : MonoBehaviour
 {
 
-    public Transform m_firstClick;
-    public Transform m_secondClick;
+    public Transform FirstClick;
+    public Transform SecondClick;
 
     [HideInInspector]
-    public Transform m_target1;
+    public Transform Target1;
     [HideInInspector]
-    public Transform m_target2;
+    public Transform Target2;
     
 
+    
     public void SaveClickPosition(Transform target)
     {
-        if (m_firstClick == null)
+        if (FirstClick == null)
         {
-            m_firstClick = target;
-            m_target1 = target;
+            FirstClick = target;
+            Target1 = target;
         }
         else
         {
-            m_secondClick = target;
-            m_target2 = target;
+            SecondClick = target;
+            Target2 = target;
         }
     }
 
     public void EmptyClickPosition()
     {
-        m_firstClick = null;
-        m_secondClick = null;
+        FirstClick = null;
+        SecondClick = null;
 
 
     }
@@ -40,8 +41,8 @@ public class GridControllerManager : MonoBehaviour
 
     public bool CanSwap()
     {
-        Tile FirstClickedTile = m_firstClick.GetComponent<Tile>();
-        Tile SecondClickedTile = m_secondClick.GetComponent<Tile>();
+        Tile FirstClickedTile = FirstClick.GetComponent<Tile>();
+        Tile SecondClickedTile = SecondClick.GetComponent<Tile>();
 
         if (FirstClickedTile.data.column == SecondClickedTile.data.column)
         {
@@ -82,7 +83,7 @@ public class GridControllerManager : MonoBehaviour
     }
 
     
-
+    
 
     public void SwapCandys(Transform Parent1, Transform Parent2)
     {
@@ -100,8 +101,9 @@ public class GridControllerManager : MonoBehaviour
         Parent2.GetComponent<Tile>().data.candyChildren = candy1;
 
     }
-    
 
+
+    //test with lerp to implement
     public IEnumerator SwapCandyesWithLerp (Transform Parent1, Transform Parent2)
     {
         int duration = 10;

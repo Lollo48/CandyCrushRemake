@@ -166,10 +166,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 097a6989d4522d0438b24b23c125bd76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_firstClick: {fileID: 0}
-  m_secondClick: {fileID: 0}
-  m_target1: {fileID: 0}
-  m_target2: {fileID: 0}
+  FirstClick: {fileID: 0}
+  SecondClick: {fileID: 0}
+  Target1: {fileID: 0}
+  Target2: {fileID: 0}
 --- !u!1 &163769309
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59b2ea00579dd0d419b1693eddbaa570, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_allCombos: []
+  AllCombos: []
 --- !u!4 &163769311
 Transform:
   m_ObjectHideFlags: 0
@@ -327,10 +327,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89cc61108fefa1e4aa95b7e1ca59f226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_tilePrefab: {fileID: 1531268575736391076, guid: e587c48373b11c040a2211a34848d824, type: 3}
-  m_maxRow: 7
-  m_maxColumn: 5
-  m_offset: {x: -0.55, y: 1, z: 0}
+  TilePrefab: {fileID: 1531268575736391076, guid: e587c48373b11c040a2211a34848d824, type: 3}
+  MaxRow: 9
+  MaxColumn: 5
+  Offset: {x: -0.5, y: 1, z: 0}
 --- !u!156049354 &1153409010
 Grid:
   m_ObjectHideFlags: 0
@@ -400,7 +400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de409e096f35ddf4a9162723b5c91b62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_currentState:
+  CurrentState:
     m_nameOfState: 
 --- !u!1 &1392677583
 GameObject:

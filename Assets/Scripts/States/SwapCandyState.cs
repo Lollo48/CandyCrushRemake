@@ -5,7 +5,7 @@ using UnityEngine;
 public class SwapCandyState : State
 {
 
-    GridControllerManager gridController;
+    GridControllerManager m_gridController;
     
 
     public SwapCandyState(StateManager sm) : base(sm)
@@ -17,7 +17,8 @@ public class SwapCandyState : State
     public override void OnEnter()
     {
         base.OnEnter();
-        gridController = GameManager.instance.m_gridControllerManager;
+        m_gridController = GameManager.instance.m_gridControllerManager;
+
         
     }
 
@@ -25,15 +26,15 @@ public class SwapCandyState : State
     public override void OnUpdate()
     {
         base.OnUpdate();
-        if (gridController.m_secondClick != null)
+        if (m_gridController.SecondClick != null)
         {
-            if (gridController.CanSwap())
+            if (m_gridController.CanSwap())
             {
-                gridController.SwapCandys(gridController.m_firstClick, gridController.m_secondClick);
+                m_gridController.SwapCandys(m_gridController.FirstClick, m_gridController.SecondClick);
                 //gridController.StartCoroutine(gridController.SwapCandyesWithLerp(gridController.m_firstClick, gridController.m_secondClick));
                 stateManager.ChangeState(Constants.STATE_CHECKCOMBO);
             }
-            else gridController.EmptyClickPosition();
+            else m_gridController.EmptyClickPosition();
 
         }
     }
@@ -41,7 +42,7 @@ public class SwapCandyState : State
     public override void OnExit()
     {
         base.OnExit();
-        gridController.EmptyClickPosition();
+        m_gridController.EmptyClickPosition();
 
     }
 
